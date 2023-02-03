@@ -71,7 +71,7 @@ window.addEventListener("load", () => {
 
 window.addEventListener('pointermove', (event) => {
     if (pointerRecording.started) {
-        var events = 'getCoalescedEvents' in event ? event.getCoalescedEvents() : [event];
+        const events = 'getCoalescedEvents' in event ? event.getCoalescedEvents() : [event];
         events.map(e =>
             pointerRecording.events.push({
                 x: e.clientX,
@@ -84,35 +84,29 @@ window.addEventListener('pointermove', (event) => {
 
 function recKeyDown(e) {
     if (e.key == 'Control') {
-        console.log('recording')
-        recIcon.style.fill = "#B22222"
-        pointerRecording.started = true
+        startRecording()
     }
     if (e.key == 'r') {
-        console.log('recording')
-        recIcon.style.fill = "#B22222"
-        pointerRecording.started = true
+        startRecording()
     }
     if (e.key == 's') {
-        recIcon.style.fill = "gray"
-        saveRecord()
-        pointerRecording.started = false
-        pointerRecording.events = []
+        stopRecording()
     }
 }
 
 function recKeyUp(e) {
     if (e.key == 'Control') {
-        console.log('stop recording')
-        recIcon.style.fill = "gray"
-        saveRecord()
-        pointerRecording.started = false
-        pointerRecording.events = []
+        stopRecording()
     }
 
 }
+function startRecording() { 
+    recIcon.style.fill = "#B22222"
+    pointerRecording.started = true
+}
 
-function saveRecord() {
+function stopRecording() {
+    
     if (pointerRecording.events.length > 5) {
         records.pointer.push({
             label: labelInput.value,
@@ -124,7 +118,11 @@ function saveRecord() {
         plotPlot(records.pointer, 'distanceMouse')
         plotFr(records.pointer, 'plotFr')
     }
-    
+
+    recIcon.style.fill = "gray"
+    pointerRecording.started = false
+    pointerRecording.events = []
+
 }
 const plotlyLayout = {
     barmode: "overlay",
@@ -230,7 +228,7 @@ function plotHistogram(records, id) {
                     size: 1,
                     start: 0
                 },
-                name: el.label + i,
+                name: `${el.label} ${i}`,
             }
         }
     )
@@ -248,7 +246,7 @@ function plotPlot(records, id) {
                 type: 'scatter',
                 opacity: .6,
                 mode: 'lines',
-                name: el.label + i,
+                name: `${el.label} ${i}`,
             }
         }
     )
@@ -278,7 +276,7 @@ function plotFr(records, id) {
                 type: 'scatter',
                 opacity: .6,
                 mode: 'lines',
-                name: el.label + i,
+                name: `${el.label} ${i}`,
             }
         }
     )
@@ -289,7 +287,7 @@ function plotFr(records, id) {
             ticks: 'outside',
         },
         yaxis: {
-            title: 'distance covered',
+            title: 'update delay',
             ticks: 'outside',
             tickcolor: '#000',
         }
