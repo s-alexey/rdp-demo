@@ -82,7 +82,6 @@ window.addEventListener('pointermove', (event) => {
 })
 
 function recKeyDown(e) {
-    console.log(e)
     if (e.key == 'R') {
         startRecording()
     }
