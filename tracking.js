@@ -82,10 +82,11 @@ window.addEventListener('pointermove', (event) => {
 })
 
 function recKeyDown(e) {
-    if (e.key == 'r' & e.ctrlKey) {
+    console.log(e)
+    if (e.key == 'R') {
         startRecording()
     }
-    if (e.key == 's' & e.ctrlKey) {
+    if (e.key == 'S') {
         stopRecording()
     }
 }
