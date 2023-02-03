@@ -1,0 +1,54 @@
+<head>
+  <script src='https://cdn.plot.ly/plotly-2.16.1.min.js'></script>
+  <script src='tracking.js'></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+  <title>RDP detection</title>
+
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row">
+      <h2>Hold Control key to record activity.
+        <svg xmlns="http://www.w3.org/2000/svg" id="recording-icon" width="20" height="20" fill="currentColor"
+          class="bi bi-record-circle" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-8 3a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        </svg>
+      </h2>
+
+      <form>
+        <div class="form-outline mb-4">
+          <label for="input-label" class="form-label">Datalist example</label>
+          <input class="form-control" list="datalistOptions" id="input-label" value="Local">
+          <datalist id="datalistOptions">
+            <option value="Local">
+            <option value="TeamViewer">
+            <option value="RustDesk">
+            <option value="AnyDesk">
+            <option value="TinyPilot">
+            <option value="Zoom">
+          </datalist>
+        </div>
+
+
+        <button id="download-button" class="btn btn-primary btn-block">Download data</button>
+      </form>
+    </div>
+    <div class="row">
+      <textarea id="textarea" label="text" rows="5" cols="120"></textarea>
+    </div>
+
+    <div id="plots">
+      <div id='plotMouse'></div>
+      <div id='distanceMouse'></div>
+      <div id='plotKeyboard'></div>
+      <div id='plotFr'></div>
+
+    </div>
+  </div>
+
+</body>
