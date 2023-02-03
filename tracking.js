@@ -32,7 +32,6 @@ window.addEventListener("load", () => {
     textarea = document.getElementById('textarea')
 
     document.addEventListener("keydown", recKeyDown, false);
-    document.addEventListener("keyup", recKeyUp, false);
     textarea.addEventListener('focus', () => { console.log('focus'); typingRecording.started = true })
     textarea.addEventListener('blur', stopTypingRecording)
 
