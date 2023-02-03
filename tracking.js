@@ -72,7 +72,7 @@ window.addEventListener("load", () => {
 window.addEventListener('pointermove', (event) => {
     if (pointerRecording.started) {
         const events = 'getCoalescedEvents' in event ? event.getCoalescedEvents() : [event];
-        events.map(e =>
+        events.sort((a, b) => Math.sign(a.timeStamp - b.timeStamp)).map(e =>
             pointerRecording.events.push({
                 x: e.clientX,
                 y: e.clientY,
@@ -83,23 +83,14 @@ window.addEventListener('pointermove', (event) => {
 })
 
 function recKeyDown(e) {
-    if (e.key == 'Control') {
+    if (e.key == 'r' & e.ctrlKey) {
         startRecording()
     }
-    if (e.key == 'r') {
-        startRecording()
-    }
-    if (e.key == 's') {
+    if (e.key == 's' & e.ctrlKey) {
         stopRecording()
     }
 }
 
-function recKeyUp(e) {
-    if (e.key == 'Control') {
-        stopRecording()
-    }
-
-}
 function startRecording() { 
     recIcon.style.fill = "#B22222"
     pointerRecording.started = true
